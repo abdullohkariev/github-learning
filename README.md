@@ -10,6 +10,8 @@ This repository is for learning Git and GitHub from scratch.
 
 ## Website
 
+🔗 **Live site: https://abdullohkariev.github.io/github-learning/**
+
 `index.html` is an interactive guide to Git and GitHub, built with plain HTML, CSS and JavaScript (no build step or dependencies).
 
 **Learn**
