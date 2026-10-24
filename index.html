@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GitHub Learning Guide</title>
   <meta name="description" content="A simple, interactive guide to learn Git and GitHub from zero.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="theme-color" content="#1a7f37">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="topbar">
-    <button id="menu-btn" title="Menu">☰</button>
-    <a class="logo" href="#top">🐙 GitHub Guide</a>
+    <button id="menu-btn" class="icon-btn" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+    <a class="logo" href="#top"><span class="ico ico-github" aria-hidden="true"></span>GitHub Guide</a>
     <span class="spacer"></span>
-    <button id="theme-btn" title="Toggle dark mode">🌙</button>
+    <button id="theme-btn" class="icon-btn" aria-label="Toggle dark mode"><img id="theme-icon" src="assets/moon.png" alt="" width="20" height="20"></button>
   </header>
 
   <aside id="sidebar">
@@ -23,14 +25,17 @@
     <nav id="tool-nav"></nav>
     <button id="reset-btn" class="link-btn">Reset my progress</button>
   </aside>
+  <div class="scrim" id="scrim"></div>
 
   <div class="content">
 
     <section class="hero" id="top">
       <h1>Learn Git &amp; GitHub</h1>
-      <p>From zero to your first pull request. Read, practice, and take the quiz.</p>
-      <a class="btn" href="#basics">Start learning</a>
-      <a class="btn ghost" href="#terminal">Try the terminal</a>
+      <p class="hero-sub">From zero to your first pull request. Read, practice, and take the quiz.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#basics">Start learning<span class="ico ico-arrow-left rot-right" aria-hidden="true"></span></a>
+        <a class="btn ghost" href="#terminal">Try the terminal</a>
+      </div>
       <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
       <p class="small" id="progress-text"></p>
     </section>
@@ -51,11 +56,11 @@
         <h3>How your files move</h3>
         <div class="areas">
           <div>Working folder<small>you edit here</small></div>
-          <span>git add →</span>
+          <span>git add<i class="ico ico-arrow-left rot-right" aria-hidden="true"></i></span>
           <div>Staging area<small>ready to save</small></div>
-          <span>git commit →</span>
+          <span>git commit<i class="ico ico-arrow-left rot-right" aria-hidden="true"></i></span>
           <div>Local repo<small>saved history</small></div>
-          <span>git push →</span>
+          <span>git push<i class="ico ico-arrow-left rot-right" aria-hidden="true"></i></span>
           <div>GitHub<small>online copy</small></div>
         </div>
       </section>
@@ -111,7 +116,7 @@ git push -u origin main</code></pre>
         <h2>The Daily Workflow</h2>
         <p>Once a repo exists, most days look like this:</p>
         <div class="flow">
-          <span>git pull</span> → <span>edit files</span> → <span>git status</span> → <span>git add .</span> → <span>git commit -m "..."</span> → <span>git push</span>
+          <span>git pull</span><i class="ico ico-arrow-left rot-right" aria-hidden="true"></i><span>edit files</span><i class="ico ico-arrow-left rot-right" aria-hidden="true"></i><span>git status</span><i class="ico ico-arrow-left rot-right" aria-hidden="true"></i><span>git add .</span><i class="ico ico-arrow-left rot-right" aria-hidden="true"></i><span>git commit -m "..."</span><i class="ico ico-arrow-left rot-right" aria-hidden="true"></i><span>git push</span>
         </div>
         <h3>Useful checks</h3>
         <pre><code>git status          # what changed?
@@ -303,11 +308,11 @@ jobs:
       <section id="flashcards" class="lesson tool">
         <h2>Flashcards</h2>
         <p class="small muted">Click the card to flip it.</p>
-        <div class="flash" id="flash"></div>
+        <div class="flash" id="flash" role="button" tabindex="0" aria-label="Flashcard, press Enter to flip"></div>
         <div class="flash-controls">
-          <button class="btn-sm" id="flash-prev">← Back</button>
+          <button class="btn-sm" id="flash-prev"><span class="ico ico-arrow-left" aria-hidden="true"></span>Back</button>
           <span id="flash-count"></span>
-          <button class="btn-sm" id="flash-next">Next →</button>
+          <button class="btn-sm" id="flash-next">Next<span class="ico ico-arrow-left rot-right" aria-hidden="true"></span></button>
           <button class="btn-sm" id="flash-shuffle">Shuffle</button>
         </div>
       </section>
@@ -324,10 +329,11 @@ jobs:
 
     <footer>
       <p>Made with plain HTML, CSS and JavaScript. Happy coding! 🚀</p>
+      <p class="credit">Designed &amp; built by <a href="https://akariev.site" target="_blank" rel="noopener">Abdulloh Kariev</a> · <a href="https://akariev.site" target="_blank" rel="noopener">akariev.site</a></p>
     </footer>
   </div>
 
-  <button id="top-btn" title="Back to top" hidden>↑</button>
+  <button id="top-btn" aria-label="Back to top" hidden><span class="ico ico-arrow-left rot-up" aria-hidden="true"></span></button>
   <div id="toast" hidden></div>
 
   <script src="script.js"></script>

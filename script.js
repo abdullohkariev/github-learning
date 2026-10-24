@@ -117,7 +117,7 @@ function shuffle(list) {
 // ================= Dark mode =================
 function setTheme(dark) {
   document.body.classList.toggle("dark", dark);
-  $("theme-btn").textContent = dark ? "☀️" : "🌙";
+  $("theme-icon").src = dark ? "assets/day-mode.png" : "assets/moon.png";
   save("theme", dark ? "dark" : "light");
 }
 var savedTheme = load("theme");
@@ -160,7 +160,10 @@ function addLink(nav, section, number) {
   tick.textContent = "✓";
   a.appendChild(label);
   a.appendChild(tick);
-  a.addEventListener("click", function () { $("sidebar").classList.remove("open"); });
+  a.addEventListener("click", function () {
+    $("sidebar").classList.remove("open");
+    $("menu-btn").setAttribute("aria-expanded", "false");
+  });
   nav.appendChild(a);
   navLinks[section.id] = a;
 }
@@ -222,7 +225,13 @@ var observer = new IntersectionObserver(function (entries) {
 document.querySelectorAll("section.lesson").forEach(function (sec) { observer.observe(sec); });
 
 // Mobile menu + back to top
-$("menu-btn").addEventListener("click", function () { $("sidebar").classList.toggle("open"); });
+function setMenu(open) {
+  $("sidebar").classList.toggle("open", open);
+  $("menu-btn").setAttribute("aria-expanded", open ? "true" : "false");
+}
+$("menu-btn").addEventListener("click", function () { setMenu(!$("sidebar").classList.contains("open")); });
+$("scrim").addEventListener("click", function () { setMenu(false); });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
 $("top-btn").addEventListener("click", function () { window.scrollTo({ top: 0 }); });
 window.addEventListener("scroll", function () { $("top-btn").hidden = window.scrollY < 600; });
 
@@ -289,7 +298,20 @@ function moveCard(step) {
   flipped = false;
   showCard();
 }
-$("flash").addEventListener("click", function () { flipped = !flipped; showCard(); });
+function flipCard() {
+  flipped = !flipped;
+  showCard();
+  var box = $("flash");
+  box.classList.remove("flip");
+  void box.offsetWidth;
+  box.classList.add("flip");
+}
+$("flash").addEventListener("click", flipCard);
+$("flash").addEventListener("keydown", function (e) {
+  if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flipCard(); }
+  else if (e.key === "ArrowRight") moveCard(1);
+  else if (e.key === "ArrowLeft") moveCard(-1);
+});
 $("flash-next").addEventListener("click", function () { moveCard(1); });
 $("flash-prev").addEventListener("click", function () { moveCard(-1); });
 $("flash-shuffle").addEventListener("click", function () {
@@ -325,8 +347,13 @@ function showQuestion() {
   var item = quizList[quizIndex];
   var wrap = document.createElement("div");
   wrap.className = "question";
+  var count = document.createElement("span");
+  count.className = "q-count";
+  count.textContent = "Question " + (quizIndex + 1) + " of " + quizList.length;
+  wrap.appendChild(count);
   var title = document.createElement("p");
-  title.textContent = "Question " + (quizIndex + 1) + " of " + quizList.length + ": " + item.q;
+  title.className = "q-text";
+  title.textContent = item.q;
   wrap.appendChild(title);
 
   var buttons = [];
@@ -339,6 +366,7 @@ function showQuestion() {
     btn.addEventListener("click", function () {
       if (locked) return;
       locked = true;
+      buttons.forEach(function (b) { b.disabled = true; });
       if (i === item.a) {
         quizScore++;
         btn.classList.add("correct");
@@ -353,7 +381,11 @@ function showQuestion() {
 
       var next = document.createElement("button");
       next.className = "btn-sm";
-      next.textContent = quizIndex === quizList.length - 1 ? "See result" : "Next question →";
+      next.textContent = quizIndex === quizList.length - 1 ? "See result" : "Next question";
+      var arrow = document.createElement("span");
+      arrow.className = "ico ico-arrow-left rot-right";
+      arrow.setAttribute("aria-hidden", "true");
+      next.appendChild(arrow);
       next.addEventListener("click", function () { quizIndex++; showQuestion(); });
       wrap.appendChild(next);
     });
