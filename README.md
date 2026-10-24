@@ -10,6 +10,23 @@ This repository is for learning Git and GitHub from scratch.
 
 ## Website
 
-`index.html` is a simple guide website (plain HTML, CSS and JavaScript) covering Git basics, setup, first repo, branches, pull requests, GitHub Pages, a searchable cheat sheet and a quiz.
+`index.html` is an interactive guide to Git and GitHub, built with plain HTML, CSS and JavaScript (no build step or dependencies).
 
-Open `index.html` in a browser to use it, or enable **Settings → Pages → main / (root)** to host it free.
+**Learn**
+- Git basics, setup, your first repo, the daily workflow
+- Branches, undoing mistakes, `.gitignore`
+- Pull requests, teamwork, GitHub Pages, building a portfolio
+
+**Practice**
+- Terminal simulator to try Git commands safely
+- Searchable cheat sheet
+- Flashcards
+- Quiz
+
+**Extras**
+- Sidebar navigation
+- Light / dark mode
+
+## Run it
+
+Open `index.html` in a browser, or host it free with **Settings → Pages → main / (root)**.
