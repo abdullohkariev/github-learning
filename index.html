@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Learning Guide</title>
+  <meta name="description" content="A simple step-by-step guide to learn Git and GitHub from zero.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="logo" href="#top">GitHub Guide</a>
+    <nav id="nav">
+      <a href="#basics">Basics</a>
+      <a href="#setup">Setup</a>
+      <a href="#first-repo">First Repo</a>
+      <a href="#branches">Branches</a>
+      <a href="#pull-requests">Pull Requests</a>
+      <a href="#pages">Pages</a>
+      <a href="#cheatsheet">Cheat Sheet</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <button id="theme-btn" title="Toggle dark mode">🌙</button>
+  </header>
+
+  <section class="hero" id="top">
+    <h1>Learn Git &amp; GitHub</h1>
+    <p>A simple guide from zero to your first pull request.</p>
+    <a class="btn" href="#basics">Start learning</a>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <p class="small" id="progress-text">0 of 7 lessons done</p>
+  </section>
+
+  <main>
+
+    <!-- 1 -->
+    <section id="basics" class="lesson">
+      <h2>1. The Basics</h2>
+      <p><b>Git</b> is a tool on your computer that saves versions of your code. Think of it as unlimited "undo" with history.</p>
+      <p><b>GitHub</b> is a website that stores your Git projects online, so you can back them up, share them, and work with other people.</p>
+      <div class="cards">
+        <div class="card"><h3>Repository</h3><p>A project folder tracked by Git. Also called a "repo".</p></div>
+        <div class="card"><h3>Commit</h3><p>A saved snapshot of your files, with a message.</p></div>
+        <div class="card"><h3>Branch</h3><p>A separate line of work, so you can try things safely.</p></div>
+        <div class="card"><h3>Remote</h3><p>The copy of your repo on GitHub.</p></div>
+      </div>
+      <button class="done-btn" data-lesson="basics">Mark as done</button>
+    </section>
+
+    <!-- 2 -->
+    <section id="setup" class="lesson">
+      <h2>2. Setup</h2>
+      <ol>
+        <li>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a>.</li>
+        <li>Install Git from <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a>.</li>
+        <li>Tell Git who you are (run once):</li>
+      </ol>
+      <pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+      <p>Check that it works:</p>
+      <pre><code>git --version</code></pre>
+      <button class="done-btn" data-lesson="setup">Mark as done</button>
+    </section>
+
+    <!-- 3 -->
+    <section id="first-repo" class="lesson">
+      <h2>3. Your First Repository</h2>
+      <p>Create a folder, turn it into a repo, save a file, and push it to GitHub.</p>
+      <h3>Step 1: Create the repo locally</h3>
+      <pre><code>mkdir my-project
+cd my-project
+git init</code></pre>
+      <h3>Step 2: Add a file and commit</h3>
+      <pre><code>echo "# My Project" &gt; README.md
+git status
+git add README.md
+git commit -m "Add README"</code></pre>
+      <h3>Step 3: Create an empty repo on GitHub</h3>
+      <p>Click <b>New repository</b> on GitHub, give it a name, and create it (don't add any files).</p>
+      <h3>Step 4: Connect and push</h3>
+      <pre><code>git branch -M main
+git remote add origin https://github.com/YOUR-NAME/my-project.git
+git push -u origin main</code></pre>
+      <div class="tip">💡 After the first push, you only need <code>git push</code>.</div>
+      <h3>The daily loop</h3>
+      <div class="flow">
+        <span>Edit files</span> → <span>git add</span> → <span>git commit</span> → <span>git push</span>
+      </div>
+      <button class="done-btn" data-lesson="first-repo">Mark as done</button>
+    </section>
+
+    <!-- 4 -->
+    <section id="branches" class="lesson">
+      <h2>4. Branches</h2>
+      <p>A branch lets you work on a feature without touching the main code.</p>
+      <pre><code>git branch                  # list branches
+git switch -c my-feature    # create and switch
+# ...edit files, add, commit...
+git switch main             # go back to main
+git merge my-feature        # bring the feature in
+git branch -d my-feature    # delete it</code></pre>
+      <div class="tip">💡 If two branches change the same line, Git shows a <b>merge conflict</b>. Open the file, keep the right lines, remove the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> markers, then <code>git add</code> and <code>git commit</code>.</div>
+      <button class="done-btn" data-lesson="branches">Mark as done</button>
+    </section>
+
+    <!-- 5 -->
+    <section id="pull-requests" class="lesson">
+      <h2>5. Collaboration &amp; Pull Requests</h2>
+      <p>A <b>pull request (PR)</b> asks the owner of a project to review and merge your changes.</p>
+      <ol>
+        <li><b>Fork</b> the repo (button at top right) to get your own copy.</li>
+        <li><b>Clone</b> your fork to your computer.</li>
+        <li>Create a branch, make changes, commit, and push.</li>
+        <li>On GitHub, click <b>Compare &amp; pull request</b>.</li>
+        <li>Write a clear title and description, then submit.</li>
+      </ol>
+      <pre><code>git clone https://github.com/YOUR-NAME/some-project.git
+cd some-project
+git switch -c fix-typo
+# ...make your change...
+git add .
+git commit -m "Fix typo in README"
+git push -u origin fix-typo</code></pre>
+      <p>Keep your copy up to date with the original:</p>
+      <pre><code>git pull origin main</code></pre>
+      <h3>Good PR habits</h3>
+      <ul>
+        <li>Keep it small and focused on one thing.</li>
+        <li>Write a clear description of what and why.</li>
+        <li>Be kind and patient in reviews.</li>
+      </ul>
+      <button class="done-btn" data-lesson="pull-requests">Mark as done</button>
+    </section>
+
+    <!-- 6 -->
+    <section id="pages" class="lesson">
+      <h2>6. GitHub Pages (free website)</h2>
+      <p>You can host a website straight from a repo, for free.</p>
+      <ol>
+        <li>Push a repo with an <code>index.html</code> file.</li>
+        <li>Go to <b>Settings → Pages</b>.</li>
+        <li>Under "Branch", choose <code>main</code> and <code>/ (root)</code>, then Save.</li>
+        <li>After a minute your site is live at <code>https://YOUR-NAME.github.io/REPO-NAME/</code>.</li>
+      </ol>
+      <h3>Other useful things</h3>
+      <ul>
+        <li><b>README.md</b>: the front page of your repo.</li>
+        <li><b>.gitignore</b>: a list of files Git should not track (like <code>node_modules/</code>).</li>
+        <li><b>Issues</b>: track bugs and ideas.</li>
+        <li><b>Actions</b>: run tests or deploy automatically.</li>
+      </ul>
+      <button class="done-btn" data-lesson="pages">Mark as done</button>
+    </section>
+
+    <!-- 7 -->
+    <section id="cheatsheet" class="lesson">
+      <h2>7. Cheat Sheet</h2>
+      <input type="text" id="search" placeholder="Search commands (e.g. undo, branch)...">
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <tbody id="cmd-table"></tbody>
+      </table>
+      <button class="done-btn" data-lesson="cheatsheet">Mark as done</button>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quiz" class="lesson">
+      <h2>Quick Quiz</h2>
+      <div id="quiz-box"></div>
+      <p id="quiz-result"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Made with plain HTML, CSS and JavaScript. Happy coding! 🚀</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

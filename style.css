@@ -1,0 +1,202 @@
+:root {
+  --bg: #f6f8fa;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #656d76;
+  --accent: #2da44e;
+  --border: #d0d7de;
+  --code-bg: #161b22;
+  --code-text: #e6edf3;
+}
+
+body.dark {
+  --bg: #0d1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --border: #30363d;
+  --code-bg: #010409;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-weight: bold; text-decoration: none; color: var(--text); }
+#nav { flex: 1; display: flex; gap: 14px; overflow-x: auto; white-space: nowrap; }
+#nav a { text-decoration: none; color: var(--muted); font-size: 14px; }
+#nav a:hover { color: var(--accent); }
+#theme-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 70px 20px 50px;
+  background: linear-gradient(135deg, #2da44e, #1f6feb);
+  color: white;
+}
+.hero h1 { font-size: 2.6rem; margin: 0 0 10px; }
+.btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 24px;
+  background: white;
+  color: #1f2328;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.progress-wrap {
+  max-width: 300px;
+  height: 10px;
+  margin: 30px auto 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress-bar { height: 100%; width: 0; background: white; transition: width 0.4s; }
+.small { font-size: 14px; margin: 0; }
+
+/* Content */
+main { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.lesson {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.lesson h2 { margin-top: 0; }
+.lesson h3 { margin-bottom: 6px; }
+
+pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  position: relative;
+}
+code { font-family: Consolas, monospace; font-size: 14px; }
+p code, li code, td code, .tip code {
+  background: rgba(128, 128, 128, 0.2);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #30363d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.copy-btn:hover { background: var(--accent); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.card { border: 1px solid var(--border); border-radius: 6px; padding: 12px; }
+.card h3 { margin: 0 0 4px; font-size: 1rem; }
+.card p { margin: 0; font-size: 14px; color: var(--muted); }
+
+.tip {
+  background: rgba(45, 164, 78, 0.12);
+  border-left: 4px solid var(--accent);
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 14px 0;
+}
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.flow span {
+  background: var(--accent);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.done-btn {
+  margin-top: 14px;
+  padding: 8px 16px;
+  border: 1px solid var(--accent);
+  background: none;
+  color: var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.done-btn.done { background: var(--accent); color: white; }
+
+/* Cheat sheet */
+#search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+
+/* Quiz */
+.question { margin-bottom: 18px; }
+.question p { font-weight: bold; margin-bottom: 6px; }
+.option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 4px 0;
+  padding: 8px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.option:hover { border-color: var(--accent); }
+.option.correct { background: rgba(45, 164, 78, 0.25); border-color: var(--accent); }
+.option.wrong { background: rgba(207, 34, 46, 0.2); border-color: #cf222e; }
+
+footer { text-align: center; color: var(--muted); padding: 30px 20px; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2rem; }
+  .lesson { padding: 16px; }
+}
